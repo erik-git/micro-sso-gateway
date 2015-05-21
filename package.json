@@ -1,15 +1,14 @@
 {
-  "name": "@gp-technical/sapify-api",
-  "version": "1.0.6",
+  "name": "micro-sso-gateway",
+  "version": "1.0.0",
   "description": "A general package for building sapify secure apis",
   "main": "lib/index.js",
   "scripts": {
     "build": "shjs build.coffee",
-    "prepublish": "shjs build.coffee"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/biofractal/sapify-api.git"
+    "url": "https://github.com/biofractal/micro-sso-gateway.git"
   },
   "keywords": [
     "secure",
@@ -19,9 +18,9 @@
   "author": "biofractal <biofractal@gmail.com> (https://github.com/biofractal)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/biofractal/sapify-api/issues"
+    "url": "https://github.com/biofractal/micro-sso-gateway/issues"
   },
-  "homepage": "https://github.com/biofractal/sapify-api",
+  "homepage": "https://github.com/biofractal/micro-sso-gateway",
   "dependencies": {
     "@gp-technical/sapify-sso": "^1.0.3",
     "app-root-path": "^1.0.0",
