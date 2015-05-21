@@ -1,0 +1,35 @@
+{
+  "name": "@gp-technical/sapify-api",
+  "version": "1.0.6",
+  "description": "A general package for building sapify secure apis",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "shjs build.coffee",
+    "prepublish": "shjs build.coffee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/biofractal/sapify-api.git"
+  },
+  "keywords": [
+    "secure",
+    "socket.io",
+    "REST"
+  ],
+  "author": "biofractal <biofractal@gmail.com> (https://github.com/biofractal)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/biofractal/sapify-api/issues"
+  },
+  "homepage": "https://github.com/biofractal/sapify-api",
+  "dependencies": {
+    "@gp-technical/sapify-sso": "^1.0.3",
+    "app-root-path": "^1.0.0",
+    "express": "^4.10.6",
+    "mongoose": "^3.8.24",
+    "request": "^2.55.0",
+    "require-dir": "^0.3.0",
+    "resourcejs": "git://github.com/travist/resourcejs.git",
+    "socket.io": "^1.3.5"
+  }
+}
