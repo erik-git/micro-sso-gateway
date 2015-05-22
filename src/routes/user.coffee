@@ -3,6 +3,22 @@ async = require 'async'
 {request, sms, cryptx, isError} = require '@gp-technical/sapify-api'
 sso_domain = process.env.MICRO_SSO_DOMAIN
 
+router.get '/', (req, res, next) ->
+	options=
+		method:'GET'
+		uri: "#{sso_domain}/user"
+	request options, req.headers, (err, response, data)->
+		# return unless isError.get(cb, err, response, data) is false
+		res.json data
+
+router.get '/:id', (req, res, next) ->
+	options=
+		method:'GET'
+		uri: "#{sso_domain}/user/#{req.params.id}"
+	request options, req.headers, (err, response, data)->
+		# return unless isError.get(cb, err, response, data) is false
+		res.json data
+
 router.get '/authenticated/:email/:secret', (req, res, next) ->
 	async.waterfall [
 		(cb)->
