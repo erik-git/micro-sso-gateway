@@ -9,8 +9,9 @@ router.get '/authenticated/:key', (req, res, next) ->
 			options=
 				method:'GET'
 				uri: "#{sso_domain}/api?key=#{encodeURIComponent req.params.key}"
-			request options, req.headers, (err, response, data)->
-				return if isError.get cb, err, response, data
+				cb:cb
+			request options, req.headers, (err, resp, data)->
+				return if resp.errorHandled
 				cb null, JSON.parse(data)[0]
 		(api, cb)->
 			verification =
@@ -20,17 +21,19 @@ router.get '/authenticated/:key', (req, res, next) ->
 			options=
 				method:'POST'
 				uri: "#{sso_domain}/verification"
+				cb:cb
 				form:verification
-			request options, req.headers, (err, response, data)->
-				return if isError.err cb, err
+			request options, req.headers, (err, resp, data)->
+				return if resp.errorHandled
 				cb null, api, verification
 		(api, verification, cb)->
 			encrypted = cryptx.encrypt verification.mac, api.secret
 			options=
 				method:'GET'
 				uri: "#{api.url}/sso/callback/#{encodeURIComponent encrypted}/#{encodeURIComponent verification.vid}"
-			request options, req.headers, (err, response, data)->
-				return if isError.err cb, err
+				cb:cb
+			request options, req.headers, (err, resp, data)->
+				return if resp.errorHandled
 				cb null
 	], (err)->
 		return res.sendStatus err if err?
@@ -42,8 +45,9 @@ router.get '/verified/:vid/:decrypted', (req, res, next) ->
 			options=
 				method:'GET'
 				uri: "#{sso_domain}/verification?vid=#{encodeURIComponent req.params.vid}"
-			request options, req.headers, (err, response, data)->
-				return if isError.get cb, err, response, data
+				cb:cb
+			request options, req.headers, (err, resp, data)->
+				return if resp.errorHandled
 				verification = JSON.parse(data)[0]
 				return cb 401 unless verification.mac is req.params.decrypted
 				cb null, verification
@@ -51,17 +55,19 @@ router.get '/verified/:vid/:decrypted', (req, res, next) ->
 			options=
 				method:'GET'
 				uri: "#{sso_domain}/api?key=#{encodeURIComponent verification.key}"
-			request options, req.headers, (err, response, data)->
-				return if isError.get cb, err, response, data
+				cb:cb
+			request options, req.headers, (err, resp, data)->
+				return if resp.errorHandled
 				cb null, JSON.parse(data)[0]
 		(api, cb)->
 			token = key:api.key, value: cryptx.uuid()
 			options=
 				method:'POST'
 				uri: "#{sso_domain}/token"
+				cb:cb
 				form:token
-			request options, req.headers, (err, response, data)->
-				return if isError.post cb, err, response
+			request options, req.headers, (err, resp, data)->
+				return if resp.errorHandled
 				cb null, token
 	], (err, token)->
 		return res.sendStatus err if err?
