@@ -67,7 +67,7 @@ router.get '/verified/:vid/:mac', (req, res, next) ->
 				return if resp.errorHandled
 				cb null, JSON.parse(data)[0]
 		(user, cb)->
-			token = key:user.email, value: cryptx.uuid()
+			token = key:user.email, value: cryptx.secret 32
 			options=
 				method:'POST'
 				uri:"#{sso_domain}/token"
