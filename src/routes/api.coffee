@@ -1,10 +1,8 @@
+
 router = require('express').Router()
 async = require 'async'
 {request, cryptx, isError} = require '@gp-technical/sapify-api'
 sso_domain = process.env.MICRO_SSO_DOMAIN
-fixed_token =
-	key : process.env.SSO_KEY
-	value : process.env.SSO_FIXED_TOKEN
 
 router.get '/authenticated/:key', (req, res, next) ->
 	async.waterfall [
@@ -12,7 +10,6 @@ router.get '/authenticated/:key', (req, res, next) ->
 			options=
 				method:'GET'
 				uri: "#{sso_domain}/api?key=#{encodeURIComponent req.params.key}"
-				fixed:fixed_token
 				cb:cb
 			request options, req.headers, (err, resp, data)->
 				return if resp.errorHandled
