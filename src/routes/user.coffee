@@ -22,8 +22,8 @@ router.get '/authenticated/:email/:secret', (req, res, next) ->
 				method:'GET'
 				uri: "#{sso_domain}/user?email=#{encodeURIComponent req.params.email}"
 			request options, req.headers, (err, resp, data)->
-				return if asynchError.handle cb, err, resp
-				return if asynchError.isMissing cb, data
+				return if asynchError.handle cb, options, err, resp
+				return if asynchError.isMissing cb, options, data
 				cb null, JSON.parse(data)[0]
 		(user, cb)->
 			cryptx.authenticate req.params.secret, user.hash, (err, authenticated)->
@@ -39,8 +39,8 @@ router.get '/authenticated/:email/:secret', (req, res, next) ->
 				uri:"#{sso_domain}/verification"
 				form:verification
 			request options, req.headers, (err, resp, data)->
-				return if asynchError.handle cb, err, resp
-				return if asynchError.isMissing cb, data
+				return if asynchError.handle cb, options, err, resp
+				return if asynchError.isMissing cb, options, data
 				cb null, vid:JSON.parse(data).vid
 	], (err, vid)->
 		return res.sendStatus err if err?
@@ -53,8 +53,8 @@ router.get '/verified/:vid/:mac', (req, res, next) ->
 				method:'GET'
 				uri:"#{sso_domain}/verification?vid=#{encodeURIComponent req.params.vid}"
 			request options, req.headers, (err, resp, data)->
-				return if asynchError.handle cb, err, resp
-				return if asynchError.isMissing cb, data
+				return if asynchError.handle cb, options, err, resp
+				return if asynchError.isMissing cb, options, data
 				verification = JSON.parse(data)[0]
 				return cb 401 unless verification.mac is req.params.mac
 				cb null, verification
@@ -63,8 +63,8 @@ router.get '/verified/:vid/:mac', (req, res, next) ->
 				method:'GET'
 				uri:"#{sso_domain}/user?email=#{encodeURIComponent verification.key}"
 			request options, req.headers, (err, resp, data)->
-				return if asynchError.handle cb, err, resp
-				return if asynchError.isMissing cb, data
+				return if asynchError.handle cb, options, err, resp
+				return if asynchError.isMissing cb, options, data
 				cb null, JSON.parse(data)[0]
 		(user, cb)->
 			token = key:user.email, value: cryptx.secret 32
@@ -73,7 +73,7 @@ router.get '/verified/:vid/:mac', (req, res, next) ->
 				uri:"#{sso_domain}/token"
 				form:token
 			request options, req.headers, (err, resp)->
-				return if asynchError.handle cb, err, resp
+				return if asynchError.handle cb, options, err, resp
 				cb null, token
 	], (err, token)->
 		return res.sendStatus err if err?
