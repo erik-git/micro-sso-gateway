@@ -1,0 +1,10 @@
+extend layout
+block content
+	form(action = '/user/authenticated' method="post")
+		p Please Login To Your Account
+		label Email
+		input(type="text", name="email")
+		label Password
+		input(type="password", name="secret")
+		button(type="submit")
+			| Sign in

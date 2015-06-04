@@ -1,0 +1,8 @@
+extend layout
+block content
+	form(action = '/user/verified' method="post")
+		input(type="hidden" name="vid" value="#{vid}")
+		p Please supply your verification code
+		input(type="text", name="mac")
+		button(type="submit")
+			| Sign in
