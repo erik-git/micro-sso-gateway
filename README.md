@@ -26,9 +26,9 @@ To make your setup easier the micro-sso-domain api has been mocked out using an 
 Mocking out the dependencies in this way allows you to run the micro-sso-gateway api in isolation.
 
 ### The .env file
-Environment variables are supplied via a .env file (see [dotenv](https://github.com/bkeepers/dotenv)). This real .env file is not included in the repo (by design) and therefore you need to create one and place it in the root of the project.
+Environment variables are supplied via a `.env` file (see [dotenv](https://github.com/bkeepers/dotenv)). The real `.env` file is not included in this repo (by design) and therefore you will need to create one and place it in the root of the project.
 
-The example .env file below points the micro-sso-gateway api to the Apiary blueprint. For convenience this safe sample .env file has been included in the repo call `.env.mock`. You should rename this file to `.env`.
+The example `.env` file below points the micro-sso-gateway api to the Apiary blueprint. For convenience this safe sample `.env` file has been included in the repo and is called `.env.mock`. You should rename this file to `.env`.
 
 ```
 NODE_ENV='development'
