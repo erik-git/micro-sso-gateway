@@ -18,7 +18,7 @@ See also:
 * `npm run build`
 
 ### The .env file
-Environment variables are supplied via a .env file (see [dotenv](https://github.com/bkeepers/dotenv)). The micro-sso-gateway api relies on the micro-sso-domain api which in  turn relies ona mongoDB. To make your setup easier the micro-sso-domain api has been mocked out using an [Apiary blueprint document](http://docs.microssodomain.apiary.io/#).
+Environment variables are supplied via a .env file (see [dotenv](https://github.com/bkeepers/dotenv)). The micro-sso-gateway api relies on the micro-sso-domain api which in  turn relies ona mongoDB. To make your setup easier the micro-sso-domain api has been mocked out using an Apiary blueprint document - see [micro-sso-domain mock](http://docs.microssodomain.apiary.io/#).
 
 The example .env file below points the micro-sso-gateway api to the Apiary blueprint. This allows you to run this micro-sso-gateway api in isolation.
 
