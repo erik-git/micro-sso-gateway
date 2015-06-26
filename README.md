@@ -13,9 +13,9 @@ See also:
 
 * fork this repo
 * add a .env file (see below)
-* run `npm -g shelljs`
-* run `npm install`
-* run `npm run build`
+* `npm -g shelljs`
+* `npm install`
+* `npm run build`
 
 ### The .env file
 Environment variables are supplied via a .env file (see [dotenv](https://github.com/bkeepers/dotenv)). The micro-sso-gateway api relies on the micro-sso-domain api which in  turn relies ona mongoDB. To make your setup easier the micro-sso-domain api has been mocked out using an [Apiary blueprint document](http://docs.microssodomain.apiary.io/#).
