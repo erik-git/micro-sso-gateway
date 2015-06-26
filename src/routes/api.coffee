@@ -10,11 +10,13 @@ router.get '/authenticated/:key', (req, res, next) ->
 			options=
 				method:'GET'
 				uri: "#{sso_domain}/api?key=#{encodeURIComponent req.params.key}"
+			console.log 'options', options
 			request options, req.headers, (err, resp, data)->
 				return if asynchError.handle cb, options, err, resp
 				return if asynchError.isMissing cb, options, data
 				cb null, JSON.parse(data)[0]
 		(api, cb)->
+			console.log 'api', api
 			verification =
 				key : req.params.key
 				vid : cryptx.uuid()

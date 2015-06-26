@@ -24,6 +24,7 @@ router.post '/authenticated', (req, res, next) ->
 				return cb 401 unless authenticated?
 				cb null, user
 		(user, cb)->
+			return cb null, {} if process.env.IS_APIARY
 			sms.sendVerificationCode user, (err, verification)->
 				verification.key = email
 				cb null, verification
