@@ -16,11 +16,15 @@ See also:
 * `npm -g shelljs`
 * `npm install`
 * `npm run build`
+* In a browser navigate to `http://localhost:5001/user/authenticated/form` (the port is determined by the .env file - see below)
+
+### Mocking out the dependencies
+The micro-sso-gateway api depends on the micro-sso-domain api which in  turn depends on mongoDB. To make your setup easier the micro-sso-domain api has been mocked out using an Apiary blueprint document - see [micro-sso-domain mock](http://docs.microssodomain.apiary.io/#). This allows you to run this micro-sso-gateway api in isolation (see .env file for more details)
 
 ### The .env file
-Environment variables are supplied via a .env file (see [dotenv](https://github.com/bkeepers/dotenv)). The micro-sso-gateway api relies on the micro-sso-domain api which in  turn relies ona mongoDB. To make your setup easier the micro-sso-domain api has been mocked out using an Apiary blueprint document - see [micro-sso-domain mock](http://docs.microssodomain.apiary.io/#).
+Environment variables are supplied via a .env file (see [dotenv](https://github.com/bkeepers/dotenv)). This .env file is not included in the repo by design therefore you need to create one and place it in the root of the project.
 
-The example .env file below points the micro-sso-gateway api to the Apiary blueprint. This allows you to run this micro-sso-gateway api in isolation.
+The example .env file below points the micro-sso-gateway api to the Apiary blueprint.
 
 ```
 NODE_ENV='development'
