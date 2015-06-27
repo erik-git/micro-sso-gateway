@@ -13,6 +13,8 @@ app.use cookieParser()
 app.set('views', "#{__dirname}/views")
 app.set('view engine', 'jade')
 
+app.use("/public", express.static(__dirname + '/public'));
+
 #app routes
 app.get '/', (req, res)->
 	res.send 'gateway api is up and running'

@@ -2,9 +2,12 @@ doctype
 html
   head
     title #{title}
-  body
-    header
-      h1 SSO Gateway
+    link(rel='stylesheet', href='/public/style.css')
+    link(rel='stylesheet', href='/public/bootstrap-theme.min.css')
+    link(rel='stylesheet', href='/public/bootstrap.min.css')
+  body    
     .container
+      header
+        h1 SSO Gateway
       .main-content
         block content
